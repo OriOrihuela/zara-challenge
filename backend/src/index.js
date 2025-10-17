@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import express from "express";
 import helmet from "helmet";
 import morgan from "morgan";
-import axios from "axios";
+import { apiClient } from "./apiClient.js";
 
 dotenv.config();
 
@@ -23,14 +23,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get("/api/products", async (req, res) => {
   try {
-    const response = await axios.get(
-      "https://prueba-tecnica-api-tienda-moviles.onrender.com/products",
-      {
-        headers: {
-          "x-api-key": "87909682e6cd74208f41a6ef39fe4191",
-        },
-      }
-    );
+    const response = await apiClient.get("/products");
     const data = response.data;
 
     res.status(200).json({
