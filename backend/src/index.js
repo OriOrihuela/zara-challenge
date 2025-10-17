@@ -4,7 +4,7 @@ import express from 'express';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import { router as faviconRoutes } from './routes/favicon.js';
-import {router as productRoutes} from './routes/products.js';
+import { router as productRoutes } from './routes/products.js';
 
 dotenv.config();
 
