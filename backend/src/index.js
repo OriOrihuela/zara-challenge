@@ -1,9 +1,9 @@
-import cors from "cors";
-import dotenv from "dotenv";
-import express from "express";
-import helmet from "helmet";
-import morgan from "morgan";
-import { apiClient } from "./apiClient.js";
+import cors from 'cors';
+import dotenv from 'dotenv';
+import express from 'express';
+import helmet from 'helmet';
+import morgan from 'morgan';
+import { apiClient } from './apiClient.js';
 
 dotenv.config();
 
@@ -13,31 +13,31 @@ const PORT = process.env.PORT || 5000;
 app.use(helmet());
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || "http://localhost:5173",
-    credentials: true,
+    origin: process.env.CLIENT_URL || 'http://localhost:5173',
+    credentials: true
   })
 );
-app.use(morgan("combined"));
+app.use(morgan('combined'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/api/products", async (req, res) => {
+app.get('/api/products', async (req, res) => {
   try {
-    const response = await apiClient.get("/products");
+    const response = await apiClient.get('/products');
     const data = response.data;
 
     res.status(200).json({
       items: data,
-      count: data.length,
+      count: data.length
     });
   } catch (error) {
-    res.status(500).json({ error: "Failed to fetch products" });
+    res.status(500).json({ error: error.message });
   }
 });
 
-app.use("*", (req, res) => {
+app.use('*', (req, res) => {
   res.status(404).json({
-    error: "Route not found",
+    error: 'Route not found'
   });
 });
 
