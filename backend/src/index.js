@@ -3,37 +3,32 @@ import dotenv from 'dotenv';
 import express from 'express';
 import helmet from 'helmet';
 import morgan from 'morgan';
-import { apiClient } from './apiClient.js';
+import { router as faviconRoutes } from './routes/favicon.js';
+import {router as productRoutes} from './routes/products.js';
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(helmet());
+app.use(helmet({
+  crossOriginResourcePolicy: { policy: 'cross-origin' }
+}));
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || 'http://localhost:5173',
-    credentials: true
+    origin: [process.env.CLIENT_URL || 'http://localhost:5173'],
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'x-api-key']
   })
 );
 app.use(morgan('combined'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/api/products', async (req, res) => {
-  try {
-    const response = await apiClient.get('/products');
-    const data = response.data;
 
-    res.status(200).json({
-      items: data,
-      count: data.length
-    });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
+app.use('/', faviconRoutes);
+app.use('/api', productRoutes);
 
 app.use('*', (req, res) => {
   res.status(404).json({
@@ -41,6 +36,4 @@ app.use('*', (req, res) => {
   });
 });
 
-app.listen(PORT, () =>
-  console.log(`🚀 Backend server running on port ${PORT}`)
-);
+app.listen(PORT);
