@@ -5,7 +5,8 @@ import { SearchContext, type SearchState } from './SearchContext';
 export const SearchProvider = ({ children }: PropsWithChildren) => {
   const [searchState, setSearchState] = useState<SearchState>({
     searchTerm: '',
-    isLoading: false
+    isLoading: false,
+    total: 0
   });
 
   const setSearchTerm = useCallback((searchTerm: string) => {
@@ -22,10 +23,18 @@ export const SearchProvider = ({ children }: PropsWithChildren) => {
     }));
   }, []);
 
+  const setTotal = useCallback((total: number) => {
+    setSearchState(prev => ({
+      ...prev,
+      total
+    }));
+  }, []);
+
   const clearSearch = useCallback(() => {
     setSearchState({
       searchTerm: '',
-      isLoading: false
+      isLoading: false,
+      total: 0
     });
   }, []);
 
@@ -35,6 +44,7 @@ export const SearchProvider = ({ children }: PropsWithChildren) => {
         searchState,
         setSearchTerm,
         setLoading,
+        setTotal,
         clearSearch
       }}
     >

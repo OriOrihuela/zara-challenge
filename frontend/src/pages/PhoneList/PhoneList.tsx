@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { v4 } from 'uuid';
 import { useSearch } from '../../hooks/useSearch';
 import type { Phone } from '../../models';
@@ -7,17 +7,16 @@ import { getPhones } from '../../services/phoneService';
 export const PhoneList = () => {
   const [phones, setPhones] = useState<Phone[]>([]);
   const [error, setError] = useState<string | undefined>(undefined);
-  const [total, setTotal] = useState<number>(0);
+  const { searchState, setLoading, setTotal } = useSearch();
 
-  const { searchState, setLoading } = useSearch();
-
-  useEffect(() => {
-    const fetchPhones = async (search: string = '') => {
+  const fetchPhones = useCallback(
+    async (search: string = '') => {
       try {
         setLoading(true);
         setError(undefined);
 
         const data = await getPhones(search);
+        console.log(data);
         setPhones(data.items);
         setTotal(data.total);
       } catch (error: unknown) {
@@ -29,14 +28,17 @@ export const PhoneList = () => {
       } finally {
         setLoading(false);
       }
-    };
+    },
+    [setLoading, setTotal]
+  );
 
+  useEffect(() => {
     if (searchState.searchTerm) {
       fetchPhones(searchState.searchTerm);
     } else {
       fetchPhones();
     }
-  }, [searchState.searchTerm, setLoading]);
+  }, [searchState.searchTerm, fetchPhones]);
 
   if (error) {
     return (
@@ -53,7 +55,6 @@ export const PhoneList = () => {
     <div className="phone-list">
       <div className="phone-list-container">
         <div className="phones-grid">
-          <p className="total-items">{total} Results</p>
           {phones.map(phone => (
             <div key={v4()} className="phone-card">
               <div className="phone-image">

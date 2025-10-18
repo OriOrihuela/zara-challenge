@@ -1,21 +1,13 @@
 import type { PropsWithChildren } from 'react';
-import { useCallback } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { useSearch } from '../../hooks/useSearch';
 import { SVGIcon } from '../SVGIcon/SVGIcon';
 import { SearchBar } from '../SearchBar/SearchBar';
 import './Layout.scss';
 
 export const Layout = ({ children }: PropsWithChildren) => {
-  const { searchState, setSearchTerm, setLoading, clearSearch } = useSearch();
-
-  const handleSearch = useCallback(
-    (searchTerm: string) => {
-      setLoading(true);
-      setSearchTerm(searchTerm);
-    },
-    [setLoading, setSearchTerm]
-  );
+  const location = useLocation();
+  const isPhoneListPage = location.pathname === '/';
 
   return (
     <div className="layout">
@@ -30,11 +22,7 @@ export const Layout = ({ children }: PropsWithChildren) => {
           </Link>
         </nav>
       </header>
-      <SearchBar
-        onSearch={handleSearch}
-        onClear={clearSearch}
-        isLoading={searchState.isLoading}
-      />
+      {isPhoneListPage && <SearchBar />}
       <main className="layout__main">{children}</main>
     </div>
   );

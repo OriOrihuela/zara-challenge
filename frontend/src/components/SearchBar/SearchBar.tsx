@@ -1,27 +1,23 @@
 import { useEffect, useState } from 'react';
+import { useSearch } from '../../hooks/useSearch';
 import './SearchBar.scss';
 
-interface Props {
-  // eslint-disable-next-line no-unused-vars
-  onSearch: (searchTerm: string) => void;
-  onClear: () => void;
-  isLoading?: boolean;
-}
-
-export const SearchBar = ({ onSearch, onClear, isLoading = false }: Props) => {
+export const SearchBar = () => {
   const [searchQuery, setSearchQuery] = useState('');
+  const { searchState, setSearchTerm, setLoading, clearSearch } = useSearch();
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       if (searchQuery.trim()) {
-        onSearch(searchQuery.trim());
+        setLoading(true);
+        setSearchTerm(searchQuery.trim());
       } else {
-        onClear();
+        clearSearch();
       }
     }, 300);
 
     return () => clearTimeout(timeoutId);
-  }, [searchQuery, onSearch, onClear]);
+  }, [searchQuery, setLoading, setSearchTerm, clearSearch]);
 
   return (
     <div className="search-bar">
@@ -32,11 +28,7 @@ export const SearchBar = ({ onSearch, onClear, isLoading = false }: Props) => {
         placeholder="Search for a smartphone..."
         className="search-bar__input"
       />
-      {isLoading && (
-        <div className="search-bar__loading">
-          <div className="search-bar__loading-bar"></div>
-        </div>
-      )}
+      <p className="search-bar__total">{searchState.total} RESULTS</p>
     </div>
   );
 };
