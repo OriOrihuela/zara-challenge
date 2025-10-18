@@ -5,8 +5,7 @@
   &__grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1px;
-    padding: 0;
+    border: 0.1px solid $color-black;
 
     @include tablet-up {
       grid-template-columns: repeat(2, 1fr);
@@ -27,11 +26,20 @@
 }
 
 .phone-card {
-  border: 1px solid $color-black;
+  border-right: 0.1px solid $color-black;
+  border-bottom: 0.1px solid $color-black;
   overflow: hidden;
   transition: all 0.3s ease;
   cursor: pointer;
   position: relative;
+
+  &:nth-child(5n) {
+    border-right: none;
+  }
+
+  &:nth-last-child(-n + 5) {
+    border-bottom: none;
+  }
 
   &__image {
     width: 100%;
