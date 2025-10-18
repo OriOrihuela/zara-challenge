@@ -55,6 +55,7 @@ export const PhoneList = () => {
     <div className="phone-list">
       <div className="phone-list-container">
         <div className="phones-grid">
+          <p className="total-items">Total items: {total}</p>
           {phones.map(phone => (
             <div key={v4()} className="phone-card">
               <div className="phone-image">
