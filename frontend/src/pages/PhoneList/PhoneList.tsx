@@ -1,24 +1,22 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { v4 } from 'uuid';
+import { useSearch } from '../../hooks/useSearch';
 import type { Phone } from '../../models';
 import { getPhones } from '../../services/phoneService';
 
 export const PhoneList = () => {
   const [phones, setPhones] = useState<Phone[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | undefined>(undefined);
   const [total, setTotal] = useState<number>(0);
 
-  useEffect(() => {
-    fetchPhones();
-  }, []);
+  const { searchState, setLoading } = useSearch();
 
-  const fetchPhones = async () => {
+  const fetchPhones = async (search: string = '') => {
     try {
       setLoading(true);
       setError(undefined);
 
-      const data = await getPhones();
+      const data = await getPhones(search);
       setPhones(data.items);
       setTotal(data.total);
     } catch (error: unknown) {
@@ -30,15 +28,17 @@ export const PhoneList = () => {
     }
   };
 
-  if (loading) {
-    return (
-      <div className="phone-list">
-        <div className="loading">
-          <h2>Loading phones...</h2>
-        </div>
-      </div>
-    );
-  }
+  useEffect(() => {
+    fetchPhones();
+  }, []);
+
+  useEffect(() => {
+    if (searchState.searchTerm) {
+      fetchPhones(searchState.searchTerm);
+    } else {
+      fetchPhones();
+    }
+  }, [searchState.searchTerm]);
 
   if (error) {
     return (
@@ -55,7 +55,7 @@ export const PhoneList = () => {
     <div className="phone-list">
       <div className="phone-list-container">
         <div className="phones-grid">
-          <p className="total-items">Total items: {total}</p>
+          <p className="total-items">{total} Results</p>
           {phones.map(phone => (
             <div key={v4()} className="phone-card">
               <div className="phone-image">

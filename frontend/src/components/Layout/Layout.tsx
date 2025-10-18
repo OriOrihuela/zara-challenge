@@ -1,9 +1,18 @@
 import type { PropsWithChildren } from 'react';
 import { Link } from 'react-router-dom';
+import { useSearch } from '../../hooks/useSearch';
 import { SVGIcon } from '../SVGIcon/SVGIcon';
+import { SearchBar } from '../SearchBar/SearchBar';
 import './Layout.scss';
 
 export const Layout = ({ children }: PropsWithChildren) => {
+  const { searchState, setSearchTerm, setLoading, clearSearch } = useSearch();
+
+  const handleSearch = (searchTerm: string) => {
+    setLoading(true);
+    setSearchTerm(searchTerm);
+  };
+
   return (
     <div className="layout">
       <header className="layout__header">
@@ -17,6 +26,11 @@ export const Layout = ({ children }: PropsWithChildren) => {
           </Link>
         </nav>
       </header>
+      <SearchBar
+        onSearch={handleSearch}
+        onClear={clearSearch}
+        isLoading={searchState.isLoading}
+      />
       <main className="layout__main">{children}</main>
     </div>
   );
