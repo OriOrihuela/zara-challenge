@@ -7,6 +7,7 @@ export const PhoneList = () => {
   const [phones, setPhones] = useState<Phone[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | undefined>(undefined);
+  const [total, setTotal] = useState<number>(0);
 
   useEffect(() => {
     fetchPhones();
@@ -19,6 +20,7 @@ export const PhoneList = () => {
 
       const data = await getPhones();
       setPhones(data.items);
+      setTotal(data.total);
     } catch (error: unknown) {
       setError(
         error instanceof Error ? error.message : 'An unexpected error occurred'

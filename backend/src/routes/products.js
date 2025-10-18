@@ -5,7 +5,9 @@ export const router = express.Router();
 
 router.get('/products', async (req, res) => {
   try {
-    const response = await apiClient.get('/products');
+    const response = await apiClient.get('/products', {
+      params: req.query
+    });
     const data = response.data;
 
     res.status(200).json({

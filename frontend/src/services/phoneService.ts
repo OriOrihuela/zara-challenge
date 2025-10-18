@@ -1,23 +1,28 @@
 import type { PhoneDetail, PhonesResponse } from '../models';
 import { apiClient } from './apiClient';
 
+const DEFAULT_LIMIT = 20;
+const DEFAULT_OFFSET = 0;
+
+interface GetPhonesOptions {
+  search?: string;
+  limit: number;
+  offset: number;
+}
+
 export const getPhones = async (
-  options: {
-    search?: string;
-    limit?: number;
-    offset?: number;
-  } = {}
+  options: GetPhonesOptions = {
+    limit: DEFAULT_LIMIT,
+    offset: DEFAULT_OFFSET
+  }
 ): Promise<PhonesResponse> => {
-  const params: Record<string, string | number> = {};
+  const params: Record<string, string | number> = {
+    limit: options.limit,
+    offset: options.offset
+  };
 
   if (options.search) {
     params.search = options.search;
-  }
-  if (options.limit) {
-    params.limit = options.limit;
-  }
-  if (options.offset) {
-    params.offset = options.offset;
   }
 
   const response = await apiClient.get<PhonesResponse>('/products', {
