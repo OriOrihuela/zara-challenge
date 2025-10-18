@@ -16,7 +16,6 @@ export const PhoneList = () => {
         setError(undefined);
 
         const data = await getPhones(search);
-        console.log(data);
         setPhones(data.items);
         setTotal(data.total);
       } catch (error: unknown) {
