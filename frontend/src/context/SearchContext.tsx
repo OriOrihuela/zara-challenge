@@ -1,5 +1,5 @@
 import type { PropsWithChildren } from 'react';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { SearchContext, type SearchState } from './SearchContext';
 
 export const SearchProvider = ({ children }: PropsWithChildren) => {
@@ -8,26 +8,26 @@ export const SearchProvider = ({ children }: PropsWithChildren) => {
     isLoading: false
   });
 
-  const setSearchTerm = (searchTerm: string) => {
+  const setSearchTerm = useCallback((searchTerm: string) => {
     setSearchState(prev => ({
       ...prev,
       searchTerm
     }));
-  };
+  }, []);
 
-  const setLoading = (isLoading: boolean) => {
+  const setLoading = useCallback((isLoading: boolean) => {
     setSearchState(prev => ({
       ...prev,
       isLoading
     }));
-  };
+  }, []);
 
-  const clearSearch = () => {
+  const clearSearch = useCallback(() => {
     setSearchState({
       searchTerm: '',
       isLoading: false
     });
-  };
+  }, []);
 
   return (
     <SearchContext.Provider

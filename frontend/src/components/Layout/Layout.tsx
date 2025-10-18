@@ -1,4 +1,5 @@
 import type { PropsWithChildren } from 'react';
+import { useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { useSearch } from '../../hooks/useSearch';
 import { SVGIcon } from '../SVGIcon/SVGIcon';
@@ -8,10 +9,13 @@ import './Layout.scss';
 export const Layout = ({ children }: PropsWithChildren) => {
   const { searchState, setSearchTerm, setLoading, clearSearch } = useSearch();
 
-  const handleSearch = (searchTerm: string) => {
-    setLoading(true);
-    setSearchTerm(searchTerm);
-  };
+  const handleSearch = useCallback(
+    (searchTerm: string) => {
+      setLoading(true);
+      setSearchTerm(searchTerm);
+    },
+    [setLoading, setSearchTerm]
+  );
 
   return (
     <div className="layout">

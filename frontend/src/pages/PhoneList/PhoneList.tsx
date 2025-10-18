@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { v4 } from 'uuid';
 import { useSearch } from '../../hooks/useSearch';
 import type { Phone } from '../../models';
@@ -11,34 +11,32 @@ export const PhoneList = () => {
 
   const { searchState, setLoading } = useSearch();
 
-  const fetchPhones = async (search: string = '') => {
-    try {
-      setLoading(true);
-      setError(undefined);
-
-      const data = await getPhones(search);
-      setPhones(data.items);
-      setTotal(data.total);
-    } catch (error: unknown) {
-      setError(
-        error instanceof Error ? error.message : 'An unexpected error occurred'
-      );
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
-    fetchPhones();
-  }, []);
+    const fetchPhones = async (search: string = '') => {
+      try {
+        setLoading(true);
+        setError(undefined);
 
-  useEffect(() => {
+        const data = await getPhones(search);
+        setPhones(data.items);
+        setTotal(data.total);
+      } catch (error: unknown) {
+        setError(
+          error instanceof Error
+            ? error.message
+            : 'An unexpected error occurred'
+        );
+      } finally {
+        setLoading(false);
+      }
+    };
+
     if (searchState.searchTerm) {
       fetchPhones(searchState.searchTerm);
     } else {
       fetchPhones();
     }
-  }, [searchState.searchTerm]);
+  }, [searchState.searchTerm, setLoading]);
 
   if (error) {
     return (

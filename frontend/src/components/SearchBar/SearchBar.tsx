@@ -1,18 +1,14 @@
 import { useEffect, useState } from 'react';
 import './SearchBar.scss';
 
-interface SearchBarProps {
+interface Props {
   // eslint-disable-next-line no-unused-vars
   onSearch: (searchTerm: string) => void;
   onClear: () => void;
   isLoading?: boolean;
 }
 
-export const SearchBar = ({
-  onSearch,
-  onClear,
-  isLoading = false
-}: SearchBarProps) => {
+export const SearchBar = ({ onSearch, onClear, isLoading = false }: Props) => {
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
