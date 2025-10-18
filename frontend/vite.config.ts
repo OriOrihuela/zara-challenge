@@ -8,9 +8,12 @@ export default defineConfig(({ mode }) => ({
     sourcemap: mode === 'development',
     rollupOptions: {
       output: {
-        manualChunks: mode === 'production' ? {
-          vendor: ['react', 'react-dom']
-        } : undefined
+        manualChunks:
+          mode === 'production'
+            ? {
+              vendor: ['react', 'react-dom']
+            }
+            : undefined
       }
     }
   },
