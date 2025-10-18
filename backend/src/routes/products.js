@@ -25,7 +25,7 @@ router.get('/products', async (req, res) => {
 
     res.status(200).json({
       items: paginatedData,
-      total: data.length
+      total: paginatedData.length
     });
   } catch (error) {
     res.status(500).json({ error: error.message });
