@@ -1,0 +1,51 @@
+@use '../../styles/variables' as *;
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  &__header {
+    height: 80px;
+    padding: 24px 100px;
+  }
+
+  &__nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__nav-link {
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  &__nav-cart {
+    text-decoration: none;
+    color: $color-black;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  &__nav-cart-items {
+    font-size: $font-size-16;
+    width: 9px;
+    height: 16px;
+  }
+
+  &__main {
+    flex: 1;
+    padding: 24px 100px;
+  }
+}
