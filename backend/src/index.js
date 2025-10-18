@@ -11,9 +11,11 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(helmet({
-  crossOriginResourcePolicy: { policy: 'same-origin' }
-}));
+app.use(
+  helmet({
+    crossOriginResourcePolicy: { policy: 'same-origin' }
+  })
+);
 app.use(
   cors({
     origin: [process.env.CLIENT_URL || 'http://localhost:5173'],
@@ -25,7 +27,6 @@ app.use(
 app.use(morgan('combined'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
 
 app.use('/', faviconRoutes);
 app.use('/api', productRoutes);

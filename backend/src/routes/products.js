@@ -10,10 +10,9 @@ router.get('/products', async (req, res) => {
 
     res.status(200).json({
       items: data,
-      count: data.length
+      total: data.length
     });
   } catch (error) {
-    console.error('Error fetching products:', error);
-    res.status(500).json({ error: 'Failed to fetch products' });
+    res.status(500).json({ error: error.message });
   }
 });
