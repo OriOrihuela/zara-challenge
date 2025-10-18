@@ -7,8 +7,6 @@ export const SearchBar = () => {
   const [hasUserInteracted, setHasUserInteracted] = useState(false);
   const { searchState, setSearchTerm, setLoading, clearSearch } = useSearch();
 
-  console.log('SearchBar render - total:', searchState.total);
-
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       if (searchQuery.trim()) {

@@ -3,9 +3,10 @@
 
 .search-bar {
   position: sticky;
-  top: 84px;
+  top: 83px;
   background-color: white;
   padding: 24px 100px;
+  z-index: 1;
 
   @include mobile {
     padding: 24px 16px;
