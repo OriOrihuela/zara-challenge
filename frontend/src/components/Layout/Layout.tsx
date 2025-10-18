@@ -8,7 +8,7 @@ export const Layout = ({ children }: PropsWithChildren) => {
     <div className="layout">
       <header className="layout__header">
         <nav className="layout__nav">
-          <Link to="/" className="layout__nav-link">
+          <Link to="/" className="layout__nav-logo">
             <SVGIcon src="/src/assets/mbst.svg" width="96px" height="32px" />
           </Link>
           <Link to="/cart" className="layout__nav-cart">
