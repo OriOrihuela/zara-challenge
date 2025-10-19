@@ -1,11 +1,13 @@
 import { useCallback, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { v4 } from 'uuid';
 import { useSearch } from '../../hooks/useSearch';
 import type { Phone } from '../../models';
 import { getPhones } from '../../services/phoneService';
-import './PhoneList.scss';
+import './PhoneListPage.scss';
 
-export const PhoneList = () => {
+export const PhoneListPage = () => {
+  const navigate = useNavigate();
   const [phones, setPhones] = useState<Phone[]>([]);
   const { searchState, setLoading, setTotal } = useSearch();
 
@@ -34,6 +36,10 @@ export const PhoneList = () => {
     }
   }, [searchState.searchTerm, fetchPhones]);
 
+  const handlePhoneClick = (phoneId: string) => {
+    navigate(`/${phoneId}`);
+  };
+
   if (searchState.total === 0) {
     return <></>;
   }
@@ -42,7 +48,11 @@ export const PhoneList = () => {
     <div className="phone-list">
       <div className="phone-list__grid">
         {phones.map(phone => (
-          <div key={v4()} className="phone-card">
+          <div
+            key={v4()}
+            className="phone-card"
+            onClick={() => handlePhoneClick(phone.id)}
+          >
             <div className="phone-card__content">
               <div className="phone-card__image">
                 <img src={phone.imageUrl} alt={phone.name} />
