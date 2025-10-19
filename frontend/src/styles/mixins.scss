@@ -53,9 +53,3 @@
     @content;
   }
 }
-
-@mixin ultra-desktop {
-  @media (min-width: 1920px) {
-    @content;
-  }
-}

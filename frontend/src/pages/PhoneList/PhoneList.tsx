@@ -34,7 +34,7 @@ export const PhoneList = () => {
     }
   }, [searchState.searchTerm, fetchPhones]);
 
-  if (phones.length === 0) {
+  if (searchState.total === 0) {
     return <></>;
   }
 
