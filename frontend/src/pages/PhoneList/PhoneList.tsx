@@ -34,6 +34,10 @@ export const PhoneList = () => {
     }
   }, [searchState.searchTerm, fetchPhones]);
 
+  if (phones.length === 0) {
+    return <></>;
+  }
+
   return (
     <div className="phone-list">
       <div className="phone-list__grid">
