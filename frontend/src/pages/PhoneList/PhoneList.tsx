@@ -39,15 +39,17 @@ export const PhoneList = () => {
       <div className="phone-list__grid">
         {phones.map(phone => (
           <div key={v4()} className="phone-card">
-            <div className="phone-card__image">
-              <img src={phone.imageUrl} alt={phone.name} />
-            </div>
-            <div className="phone-card__info">
-              <div className="phone-card__brand-name">
-                <span className="phone-card__brand">{phone.brand}</span>
-                <span className="phone-card__name">{phone.name}</span>
+            <div className="phone-card__content">
+              <div className="phone-card__image">
+                <img src={phone.imageUrl} alt={phone.name} />
               </div>
-              <span className="phone-card__price">{phone.basePrice} EUR</span>
+              <div className="phone-card__info">
+                <div className="phone-card__brand-name">
+                  <span className="phone-card__brand">{phone.brand}</span>
+                  <span className="phone-card__name">{phone.name}</span>
+                </div>
+                <span className="phone-card__price">{phone.basePrice} EUR</span>
+              </div>
             </div>
           </div>
         ))}
