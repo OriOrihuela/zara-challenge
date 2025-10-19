@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { v4 } from 'uuid';
-import { SVGIcon } from '../../components/SVGIcon/SVGIcon';
 import type { PhoneDetail } from '../../models/phoneDetail';
 import { getPhoneById } from '../../services/phoneService';
 import './PhoneDetailPage.scss';
@@ -57,19 +56,6 @@ export const PhoneDetailPage = () => {
 
   return (
     <div className="phone-detail">
-      <div className="phone-detail__header">
-        <button
-          onClick={() => navigate('/')}
-          className="phone-detail__back-btn"
-        >
-          <SVGIcon
-            src="/src/assets/arrow-back.svg"
-            width="16px"
-            height="16px"
-          />
-          Back
-        </button>
-      </div>
       <div className="phone-detail__content">
         <div className="phone-detail__main-image">
           <img src={selectedColorOption?.imageUrl} alt={phone.name} />

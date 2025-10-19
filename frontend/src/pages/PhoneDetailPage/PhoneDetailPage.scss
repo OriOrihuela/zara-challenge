@@ -2,31 +2,6 @@
 @use '../../styles/mixins' as *;
 
 .phone-detail {
-  &__header {
-    position: sticky;
-    top: 83px;
-    background-color: white;
-    z-index: 1;
-    margin-bottom: 32px;
-  }
-
-  &__back-btn {
-    display: flex;
-    gap: 4px;
-    background: none;
-    border: none;
-    font-size: $font-size-16;
-    cursor: pointer;
-    color: $color-black;
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: opacity 0.2s ease;
-
-    &:hover {
-      opacity: 0.7;
-    }
-  }
-
   &__content {
     display: grid;
     grid-template-columns: 1fr 1fr;

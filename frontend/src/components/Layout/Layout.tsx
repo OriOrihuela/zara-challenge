@@ -3,11 +3,16 @@ import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { SVGIcon } from '../SVGIcon/SVGIcon';
 import { SearchBar } from '../SearchBar/SearchBar';
+import { BackButton } from '../BackButton/BackButton';
 import './Layout.scss';
 
 export const Layout = ({ children }: PropsWithChildren) => {
   const location = useLocation();
   const isPhoneListPage = location.pathname === '/';
+  const isPhoneDetailPage =
+    location.pathname.startsWith('/') &&
+    location.pathname !== '/' &&
+    location.pathname !== '/cart';
 
   return (
     <div className="layout">
@@ -23,6 +28,7 @@ export const Layout = ({ children }: PropsWithChildren) => {
         </nav>
       </header>
       {isPhoneListPage && <SearchBar />}
+      {isPhoneDetailPage && <BackButton />}
       <main className="layout__main">{children}</main>
     </div>
   );
