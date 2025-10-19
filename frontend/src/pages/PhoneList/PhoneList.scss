@@ -96,7 +96,9 @@
     font-size: $font-size-12;
   }
 
-  &:hover {
+  &:hover,
+  &:active,
+  &:focus {
     .phone-card__content::before {
       transform: translateY(0);
     }
@@ -105,6 +107,20 @@
     .phone-card__name,
     .phone-card__price {
       color: white;
+    }
+  }
+
+  @media (hover: none) and (pointer: coarse) {
+    &:active {
+      .phone-card__content::before {
+        transform: translateY(0);
+      }
+
+      .phone-card__brand,
+      .phone-card__name,
+      .phone-card__price {
+        color: white;
+      }
     }
   }
 }
