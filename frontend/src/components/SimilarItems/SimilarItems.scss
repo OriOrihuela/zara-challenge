@@ -9,47 +9,53 @@
     text-transform: uppercase;
   }
 
-  &__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 24px;
+  &__scroll-container {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc transparent;
+
+    &::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: #999;
+    }
+  }
+
+  &__scroll {
+    display: flex;
+    gap: 1px;
+    background-color: $color-black;
+    border: 1px solid $color-black;
+    padding: 0;
+    min-width: max-content;
   }
 
   &__card {
-    cursor: pointer;
-    transition: transform 0.2s ease;
+    flex-shrink: 0;
+    width: 200px;
+    height: 350px;
 
-    &:hover {
-      transform: translateY(-4px);
+    @include tablet-up {
+      width: 220px;
+      height: 350px;
     }
 
-    img {
-      width: 100%;
-      height: 200px;
-      object-fit: contain;
-      border-radius: 8px;
-      margin-bottom: 12px;
+    @include laptop-up {
+      width: 240px;
+      height: 350px;
     }
-  }
-
-  &__info {
-    text-align: center;
-  }
-
-  &__brand {
-    font-size: $font-size-12;
-    text-transform: uppercase;
-    color: $color-gray;
-    margin-bottom: 4px;
-  }
-
-  &__name {
-    font-size: $font-size-14;
-    margin-bottom: 4px;
-  }
-
-  &__price {
-    font-size: $font-size-14;
-    color: $color-black;
   }
 }

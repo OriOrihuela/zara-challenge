@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { v4 } from 'uuid';
+import { PhoneCard } from '../PhoneCard/PhoneCard';
 import type { Phone } from '../../models/phoneList';
 import './SimilarItems.scss';
 
@@ -17,25 +18,16 @@ export const SimilarItems = ({ similarProducts }: Props) => {
   return (
     <div className="similar-items">
       <h2 className="similar-items__title">Similar items</h2>
-      <div className="similar-items__grid">
-        {similarProducts.map(similarPhone => (
-          <div
-            key={v4()}
-            className="similar-items__card"
-            onClick={() => navigate(`/${similarPhone.id}`)}
-          >
-            <img src={similarPhone.imageUrl} alt={similarPhone.name} />
-            <div className="similar-items__info">
-              <div className="similar-items__brand">
-                {similarPhone.brand}
-              </div>
-              <div className="similar-items__name">{similarPhone.name}</div>
-              <div className="similar-items__price">
-                {similarPhone.basePrice} EUR
-              </div>
-            </div>
-          </div>
-        ))}
+      <div className="similar-items__scroll-container">
+        <div className="similar-items__scroll">
+          {similarProducts.map(product => (
+            <PhoneCard
+              key={v4()}
+              phone={product}
+              onClick={() => navigate(`/${product.id}`)}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

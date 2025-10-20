@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { v4 } from 'uuid';
+import { PhoneCard } from '../../components/PhoneCard/PhoneCard';
 import { useSearch } from '../../hooks/useSearch';
 import type { Phone } from '../../models';
 import { getPhones } from '../../services/phoneService';
@@ -48,24 +49,7 @@ export const PhoneListPage = () => {
     <div className="phone-list">
       <div className="phone-list__grid">
         {phones.map(phone => (
-          <div
-            key={v4()}
-            className="phone-card"
-            onClick={() => handlePhoneClick(phone.id)}
-          >
-            <div className="phone-card__content">
-              <div className="phone-card__image">
-                <img src={phone.imageUrl} alt={phone.name} />
-              </div>
-              <div className="phone-card__info">
-                <div className="phone-card__brand-name">
-                  <span className="phone-card__brand">{phone.brand}</span>
-                  <span className="phone-card__name">{phone.name}</span>
-                </div>
-                <span className="phone-card__price">{phone.basePrice} EUR</span>
-              </div>
-            </div>
-          </div>
+          <PhoneCard key={v4()} phone={phone} onClick={handlePhoneClick} />
         ))}
       </div>
     </div>

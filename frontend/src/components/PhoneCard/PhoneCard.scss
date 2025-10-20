@@ -1,0 +1,113 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.phone-card {
+  background: $color-white;
+  cursor: pointer;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &__content {
+    position: relative;
+    background: $color-white;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.85);
+      transform: translateY(100%);
+      transition: transform 0.1s ease;
+    }
+
+    &:hover::before {
+      transition: transform 0.9s ease;
+    }
+  }
+
+  &__image {
+    width: 100%;
+    height: 257px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+    }
+  }
+
+  &__info {
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    position: relative;
+    flex-shrink: 0;
+    min-height: 60px;
+  }
+
+  &__brand-name {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-height: 32px;
+    justify-content: flex-start;
+  }
+
+  &__brand {
+    font-size: $font-size-12;
+    text-transform: uppercase;
+    color: $color-gray;
+  }
+
+  &__name {
+    font-size: $font-size-12;
+    text-transform: uppercase;
+  }
+
+  &__price {
+    font-size: $font-size-12;
+  }
+
+  &:hover,
+  &:active,
+  &:focus {
+    .phone-card__content::before {
+      transform: translateY(0);
+    }
+
+    .phone-card__brand,
+    .phone-card__name,
+    .phone-card__price {
+      color: white;
+    }
+  }
+
+  @media (hover: none) and (pointer: coarse) {
+    &:active {
+      .phone-card__content::before {
+        transform: translateY(0);
+      }
+
+      .phone-card__brand,
+      .phone-card__name,
+      .phone-card__price {
+        color: white;
+      }
+    }
+  }
+}
