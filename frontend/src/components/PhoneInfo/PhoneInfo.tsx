@@ -25,6 +25,8 @@ export const PhoneInfo = ({
     ? selectedStorageOption.price
     : phone.basePrice;
 
+  const isAddToCartDisabled = !selectedStorage || !selectedColor;
+
   return (
     <div className="phone-info">
       <h1 className="phone-info__name">{phone.name}</h1>
@@ -75,7 +77,11 @@ export const PhoneInfo = ({
         </div>
       )}
 
-      <button className="phone-info__add-to-cart" onClick={onAddToCart}>
+      <button
+        className="phone-info__add-to-cart"
+        onClick={onAddToCart}
+        disabled={isAddToCartDisabled}
+      >
         Add to Cart
       </button>
     </div>

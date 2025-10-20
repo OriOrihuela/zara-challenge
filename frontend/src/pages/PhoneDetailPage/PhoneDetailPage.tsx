@@ -19,13 +19,6 @@ export const PhoneDetailPage = () => {
     try {
       const phoneData = await getPhoneById(phoneId);
       setPhone(phoneData);
-
-      if (phoneData.colorOptions.length > 0) {
-        setSelectedColor(phoneData.colorOptions[0].name);
-      }
-      if (phoneData.storageOptions.length > 0) {
-        setSelectedStorage(phoneData.storageOptions[0].capacity);
-      }
     } catch {
       // TODO: Handle error.
     }
@@ -46,9 +39,9 @@ export const PhoneDetailPage = () => {
     return <></>;
   }
 
-  const selectedColorOption = phone.colorOptions.find(
-    c => c.name === selectedColor
-  );
+  const selectedColorOption =
+    phone.colorOptions.find(c => c.name === selectedColor) ||
+    phone.colorOptions[0];
 
   return (
     <div className="phone-detail">

@@ -52,10 +52,10 @@
   }
 
   &__main {
-    padding: 24px 100px;
+    padding: 24px 100px 64px;
 
     @include mobile {
-      padding: 24px 16px;
+      padding: 24px 16px 64px;
     }
   }
 }
