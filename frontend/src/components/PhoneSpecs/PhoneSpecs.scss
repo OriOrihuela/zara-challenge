@@ -1,0 +1,43 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.phone-specs {
+  margin-bottom: 64px;
+
+  &__title {
+    font-weight: $font-weight-300;
+    font-size: $font-size-20;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+  }
+
+  &__grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 16px 0;
+    border-bottom: 1px solid $color-black;
+    gap: 24px;
+  }
+
+  &__label {
+    color: $color-black;
+    text-transform: uppercase;
+    font-size: $font-size-12;
+    min-width: 120px;
+    flex-shrink: 0;
+  }
+
+  &__value {
+    color: $color-black;
+    font-size: $font-size-14;
+    text-align: left;
+    flex: 1;
+  }
+}
