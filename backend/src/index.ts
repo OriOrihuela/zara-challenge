@@ -1,6 +1,10 @@
 import cors from 'cors';
 import dotenv from 'dotenv';
-import express from 'express';
+import express, {
+  type NextFunction,
+  type Request,
+  type Response
+} from 'express';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import { router as faviconRoutes } from './routes/favicon.js';
@@ -31,9 +35,16 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/', faviconRoutes);
 app.use('/api', productRoutes);
 
-app.use('*', (req, res) => {
+app.use('*', (req: Request, res: Response) => {
   res.status(404).json({
     error: 'Route not found'
+  });
+});
+
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+  console.error(err.stack);
+  res.status(500).json({
+    error: 'Something went wrong!'
   });
 });
 
