@@ -4,12 +4,14 @@ import { PhoneImage } from '../../components/PhoneImage/PhoneImage';
 import { PhoneInfo } from '../../components/PhoneInfo/PhoneInfo';
 import { PhoneSpecs } from '../../components/PhoneSpecs/PhoneSpecs';
 import { SimilarItems } from '../../components/SimilarItems/SimilarItems';
+import { useCart } from '../../hooks/useCart';
 import type { PhoneDetail } from '../../models/phoneDetail';
 import { getPhoneById } from '../../services/phoneService';
 import './PhoneDetailPage.scss';
 
 export const PhoneDetailPage = () => {
   const { id } = useParams<{ id: string }>();
+  const { addToCart } = useCart();
 
   const [phone, setPhone] = useState<PhoneDetail | null>(null);
   const [selectedColor, setSelectedColor] = useState<string>('');
@@ -31,8 +33,14 @@ export const PhoneDetailPage = () => {
   }, [id, fetchPhone]);
 
   const handleAddToCart = () => {
-    // TODO: Implement add to cart functionality
-    console.log('Add to cart:', { phone, selectedColor, selectedStorage });
+    if (phone && selectedColor && selectedStorage) {
+      addToCart({
+        phone,
+        selectedColor,
+        selectedStorage,
+        quantity: 1
+      });
+    }
   };
 
   if (!phone) {

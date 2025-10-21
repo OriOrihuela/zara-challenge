@@ -4,10 +4,13 @@ import { Link } from 'react-router-dom';
 import { SVGIcon } from '../SVGIcon/SVGIcon';
 import { SearchBar } from '../SearchBar/SearchBar';
 import { BackButton } from '../BackButton/BackButton';
+import { useCart } from '../../hooks/useCart';
 import './Layout.scss';
 
 export const Layout = ({ children }: PropsWithChildren) => {
   const location = useLocation();
+  const { cartState } = useCart();
+
   const isPhoneListPage = location.pathname === '/';
   const isPhoneDetailPage =
     location.pathname.startsWith('/') &&
@@ -23,7 +26,9 @@ export const Layout = ({ children }: PropsWithChildren) => {
           </Link>
           <Link to="/cart" className="layout__nav-cart">
             <SVGIcon src="/src/assets/bag.svg" width="18px" height="22px" />
-            <span className="layout__nav-cart-items">0</span>
+            <span className="layout__nav-cart-items">
+              {cartState.items.length}
+            </span>
           </Link>
         </nav>
       </header>

@@ -1,21 +1,25 @@
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { Layout } from './components/Layout/Layout';
 import { SearchProvider } from './context/SearchContext.tsx';
+import { CartProvider } from './context/CartContext.tsx';
 import { PhoneListPage } from './pages/PhoneListPage/PhoneListPage';
 import { PhoneDetailPage } from './pages/PhoneDetailPage/PhoneDetailPage';
+import { CartPage } from './pages/CartPage/CartPage';
 
 export const App = () => {
   return (
     <SearchProvider>
-      <Router>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<PhoneListPage />} />
-            <Route path="/:id" element={<PhoneDetailPage />} />
-            <Route path="/cart" element={<div>Cart page coming soon...</div>} />
-          </Routes>
-        </Layout>
-      </Router>
+      <CartProvider>
+        <Router>
+          <Layout>
+            <Routes>
+              <Route path="/" element={<PhoneListPage />} />
+              <Route path="/:id" element={<PhoneDetailPage />} />
+              <Route path="/cart" element={<CartPage />} />
+            </Routes>
+          </Layout>
+        </Router>
+      </CartProvider>
     </SearchProvider>
   );
 };
