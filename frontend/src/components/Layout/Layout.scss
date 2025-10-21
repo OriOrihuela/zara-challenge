@@ -10,8 +10,8 @@
 }
 
 .layout {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: auto 1fr;
   min-height: 100vh;
 
   &__header {
@@ -52,6 +52,8 @@
   }
 
   &__main {
+    display: flex;
+    flex-direction: column;
     padding: 24px 100px 64px;
 
     @include mobile {
