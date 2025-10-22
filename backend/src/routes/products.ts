@@ -1,12 +1,12 @@
 import express, { type Request, type Response, type Router } from 'express';
 import { apiClient } from '../apiClient.js';
-import { type ProductQuery, type Product } from '../models/product.js';
+import { type QueryParams, type Product } from '../models/product.js';
 
 export const router: Router = express.Router();
 
 router.get(
   '/products',
-  async (req: Request<{}, {}, {}, ProductQuery>, res: Response) => {
+  async (req: Request<{}, {}, {}, QueryParams>, res: Response) => {
     try {
       const response = await apiClient.get('/products');
       let data: Product[] = response.data;
