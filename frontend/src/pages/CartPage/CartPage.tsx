@@ -44,18 +44,36 @@ export const CartPage = () => {
       </div>
 
       <div className="cart-page__footer">
-        <button
-          className="cart-page__continue-btn"
-          onClick={() => navigate('/')}
-        >
-          Continue Shopping
-        </button>
-
         {cartState.items.length > 0 && (
-          <div className="cart-page__checkout">
-            <div className="cart-page__total">TOTAL {cartState.total} EUR</div>
-            <button className="cart-page__pay-btn">PAY</button>
-          </div>
+          <>
+            <div className="cart-page__checkout cart-page__checkout--desktop">
+              <button
+                className="cart-page__continue-btn"
+                onClick={() => navigate('/')}
+              >
+                Continue Shopping
+              </button>
+              <div className="cart-page__total">
+                <span>Total {cartState.total} eur</span>
+                <button className="cart-page__pay-btn">Pay</button>
+              </div>
+            </div>
+
+            <div className="cart-page__checkout cart-page__checkout--mobile">
+              <div className="cart-page__total">
+                <span>TOTAL</span> <span>{cartState.total} EUR</span>
+              </div>
+              <div className="cart-page__buttons">
+                <button
+                  className="cart-page__continue-btn"
+                  onClick={() => navigate('/')}
+                >
+                  Continue Shopping
+                </button>
+                <button className="cart-page__pay-btn">PAY</button>
+              </div>
+            </div>
+          </>
         )}
       </div>
     </div>
