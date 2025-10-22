@@ -95,6 +95,7 @@
 
     @include mobile {
       width: 50%;
+      flex-grow: 1;
     }
   }
 
