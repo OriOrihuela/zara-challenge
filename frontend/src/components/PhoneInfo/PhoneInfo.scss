@@ -5,6 +5,7 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  justify-content: center;
 
   &__name {
     font-size: $font-size-24;
@@ -19,6 +20,10 @@
   }
 
   &__storage-options {
+    border: none;
+    padding: 0;
+    margin-top: 24px;
+
     &__title {
       font-weight: $font-weight-300;
       font-size: $font-size-14;
@@ -38,15 +43,29 @@
       background: $color-white;
       cursor: pointer;
       border-radius: 4px;
-      transition: all 0.7s ease;
+      transition: all 0.2s ease;
 
       &.active {
         border-color: $color-black;
+      }
+
+      &:focus {
+        outline: 2px solid $color-black;
+        outline-offset: 2px;
+      }
+
+      &:focus-visible {
+        outline: 2px solid $color-black;
+        outline-offset: 2px;
       }
     }
   }
 
   &__color-options {
+    border: none;
+    padding: 0;
+    margin-top: 12px;
+
     &__title {
       font-weight: $font-weight-300;
       font-size: $font-size-14;
@@ -69,6 +88,16 @@
 
       &.active {
         border-color: $color-black;
+      }
+
+      &:focus {
+        outline: 2px solid $color-black;
+        outline-offset: 2px;
+      }
+
+      &:focus-visible {
+        outline: 2px solid $color-black;
+        outline-offset: 2px;
       }
     }
 
@@ -97,6 +126,16 @@
 
     &:hover:not(:disabled) {
       background: #333;
+    }
+
+    &:focus {
+      outline: 2px solid $color-black;
+      outline-offset: 2px;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-black;
+      outline-offset: 2px;
     }
   }
 }

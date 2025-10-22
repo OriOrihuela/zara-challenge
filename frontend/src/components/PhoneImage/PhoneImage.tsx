@@ -7,8 +7,8 @@ interface Props {
 
 export const PhoneImage = ({ imageUrl, name }: Props) => {
   return (
-    <div className="phone-image">
-      <img src={imageUrl} alt={name} />
-    </div>
+    <figure className="phone-image" aria-label={`Product image of ${name}`}>
+      <img src={imageUrl} alt={`${name} product image`} loading="lazy" />
+    </figure>
   );
 };

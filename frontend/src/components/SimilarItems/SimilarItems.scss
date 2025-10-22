@@ -15,6 +15,19 @@
     -webkit-overflow-scrolling: touch;
     scrollbar-width: thin;
     scrollbar-color: #ccc transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+
+    &:focus {
+      outline: 2px solid $color-black;
+      outline-offset: 2px;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-black;
+      outline-offset: 2px;
+    }
 
     &::-webkit-scrollbar {
       height: 6px;

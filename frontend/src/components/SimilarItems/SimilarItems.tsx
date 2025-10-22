@@ -16,9 +16,14 @@ export const SimilarItems = ({ similarProducts }: Props) => {
   }
 
   return (
-    <div className="similar-items">
+    <section className="similar-items" aria-label="Similar items">
       <h2 className="similar-items__title">Similar items</h2>
-      <div className="similar-items__scroll-container">
+      <div
+        className="similar-items__scroll-container"
+        role="region"
+        aria-label="Scrollable list of similar items"
+        tabIndex={0}
+      >
         <div className="similar-items__scroll">
           {similarProducts.map(product => (
             <PhoneCard
@@ -29,6 +34,6 @@ export const SimilarItems = ({ similarProducts }: Props) => {
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };

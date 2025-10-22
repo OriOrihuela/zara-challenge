@@ -52,7 +52,7 @@ export const PhoneDetailPage = () => {
     phone.colorOptions[0];
 
   return (
-    <div className="phone-detail">
+    <main className="phone-detail" role="main" aria-label="Phone details">
       <div className="phone-detail__content">
         <PhoneImage
           imageUrl={selectedColorOption?.imageUrl}
@@ -69,6 +69,6 @@ export const PhoneDetailPage = () => {
       </div>
       <PhoneSpecs phone={phone} />
       <SimilarItems similarProducts={phone.similarProducts} />
-    </div>
+    </main>
   );
 };

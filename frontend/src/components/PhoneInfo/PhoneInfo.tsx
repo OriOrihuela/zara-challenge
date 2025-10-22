@@ -28,16 +28,25 @@ export const PhoneInfo = ({
   const isAddToCartDisabled = !selectedStorage || !selectedColor;
 
   return (
-    <div className="phone-info">
+    <section className="phone-info" aria-label="Phone information and options">
       <h1 className="phone-info__name">{phone.name}</h1>
-      <span className="phone-info__price">{finalPrice} EUR</span>
+      <span
+        className="phone-info__price"
+        aria-label={`Price: ${finalPrice} EUR`}
+      >
+        {finalPrice} EUR
+      </span>
 
       {phone.storageOptions.length > 0 && (
-        <div className="phone-info__storage-options">
-          <h3 className="phone-info__storage-options__title">
+        <fieldset className="phone-info__storage-options">
+          <legend className="phone-info__storage-options__title">
             Storage, how much do you need?
-          </h3>
-          <div className="phone-info__storage-options__list">
+          </legend>
+          <div
+            className="phone-info__storage-options__list"
+            role="radiogroup"
+            aria-label="Storage options"
+          >
             {phone.storageOptions.map(storage => (
               <button
                 key={storage.capacity}
@@ -45,20 +54,26 @@ export const PhoneInfo = ({
                   selectedStorage === storage.capacity ? 'active' : ''
                 }`}
                 onClick={() => onStorageSelect(storage.capacity)}
+                aria-pressed={selectedStorage === storage.capacity}
+                aria-label={`Select ${storage.capacity} storage`}
               >
                 {storage.capacity}
               </button>
             ))}
           </div>
-        </div>
+        </fieldset>
       )}
 
       {phone.colorOptions.length > 0 && (
-        <div className="phone-info__color-options">
-          <h3 className="phone-info__color-options__title">
+        <fieldset className="phone-info__color-options">
+          <legend className="phone-info__color-options__title">
             Colors, pick your favorite.
-          </h3>
-          <div className="phone-info__color-options__list">
+          </legend>
+          <div
+            className="phone-info__color-options__list"
+            role="radiogroup"
+            aria-label="Color options"
+          >
             {phone.colorOptions.map(color => (
               <button
                 key={color.name}
@@ -67,23 +82,34 @@ export const PhoneInfo = ({
                 }`}
                 onClick={() => onColorSelect(color.name)}
                 style={{ backgroundColor: color.hexCode }}
+                aria-pressed={selectedColor === color.name}
+                aria-label={`Select ${color.name} color`}
                 title={color.name}
               />
             ))}
           </div>
-          <div className="phone-info__color-options__selected-color">
+          <div
+            className="phone-info__color-options__selected-color"
+            aria-live="polite"
+          >
+            {selectedColor && <span className="sr-only">Selected color: </span>}
             {selectedColor}
           </div>
-        </div>
+        </fieldset>
       )}
 
       <button
         className="phone-info__add-to-cart"
         onClick={onAddToCart}
         disabled={isAddToCartDisabled}
+        aria-label={
+          isAddToCartDisabled
+            ? 'Please select storage and color before adding to cart'
+            : `Add ${phone.name} to cart for ${finalPrice} EUR`
+        }
       >
         Add to Cart
       </button>
-    </div>
+    </section>
   );
 };
