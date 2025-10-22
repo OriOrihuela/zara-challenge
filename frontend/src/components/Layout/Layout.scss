@@ -10,10 +10,6 @@
 }
 
 .layout {
-  display: grid;
-  grid-template-rows: auto 1fr;
-  min-height: 100vh;
-
   &__header {
     z-index: 1;
     position: sticky;
