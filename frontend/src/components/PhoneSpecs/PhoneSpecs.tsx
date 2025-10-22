@@ -1,3 +1,4 @@
+import { v4 } from 'uuid';
 import type { PhoneDetail } from '../../models/phoneDetail';
 import './PhoneSpecs.scss';
 
@@ -7,30 +8,30 @@ interface Props {
 
 export const PhoneSpecs = ({ phone }: Props) => {
   const specItems = [
-    { label: 'Brand', value: phone.brand },
-    { label: 'Name', value: phone.name },
-    { label: 'Description', value: phone.description },
-    { label: 'Screen', value: phone.specs.screen },
-    { label: 'Resolution', value: phone.specs.resolution },
-    { label: 'Processor', value: phone.specs.processor },
-    { label: 'Main Camera', value: phone.specs.mainCamera },
-    { label: 'Selfie Camera', value: phone.specs.selfieCamera },
-    { label: 'Battery', value: phone.specs.battery },
-    { label: 'OS', value: phone.specs.os },
-    { label: 'Refresh Rate', value: phone.specs.screenRefreshRate }
+    { term: 'Brand', definition: phone.brand },
+    { term: 'Name', definition: phone.name },
+    { term: 'Description', definition: phone.description },
+    { term: 'Screen', definition: phone.specs.screen },
+    { term: 'Resolution', definition: phone.specs.resolution },
+    { term: 'Processor', definition: phone.specs.processor },
+    { term: 'Main Camera', definition: phone.specs.mainCamera },
+    { term: 'Selfie Camera', definition: phone.specs.selfieCamera },
+    { term: 'Battery', definition: phone.specs.battery },
+    { term: 'OS', definition: phone.specs.os },
+    { term: 'Refresh Rate', definition: phone.specs.screenRefreshRate }
   ];
 
   return (
-    <div className="phone-specs">
+    <section className="phone-specs" aria-label="Phone specifications">
       <h2 className="phone-specs__title">Specifications</h2>
-      <div className="phone-specs__grid">
-        {specItems.map(({ label, value }) => (
-          <div key={label} className="phone-specs__item">
-            <span className="phone-specs__label">{label}</span>
-            <span className="phone-specs__value">{value}</span>
+      <dl className="phone-specs__grid" role="list">
+        {specItems.map(({ term, definition }) => (
+          <div key={v4()} className="phone-specs__item" role="listitem">
+            <dt className="phone-specs__term">{term}</dt>
+            <dd className="phone-specs__definition">{definition}</dd>
           </div>
         ))}
-      </div>
-    </div>
+      </dl>
+    </section>
   );
 };

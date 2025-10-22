@@ -9,8 +9,10 @@ interface Props {
 export const SVGIcon = ({ src, width, height }: Props) => (
   <ReactSVG
     src={src}
-    beforeInjection={svg =>
-      svg.setAttribute('style', `width: ${width}; height: ${height}`)
-    }
+    beforeInjection={svg => {
+      svg.setAttribute('style', `width: ${width}; height: ${height}`);
+      svg.setAttribute('aria-hidden', 'true');
+      svg.setAttribute('role', 'img');
+    }}
   />
 );

@@ -26,7 +26,7 @@
     gap: 24px;
   }
 
-  &__label {
+  &__term {
     color: $color-black;
     text-transform: uppercase;
     font-size: $font-size-12;
@@ -34,7 +34,7 @@
     flex-shrink: 0;
   }
 
-  &__value {
+  &__definition {
     color: $color-black;
     font-size: $font-size-14;
     text-align: left;

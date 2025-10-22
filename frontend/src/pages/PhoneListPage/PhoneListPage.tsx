@@ -46,12 +46,17 @@ export const PhoneListPage = () => {
   }
 
   return (
-    <div className="phone-list">
-      <div className="phone-list__grid">
+    <main className="phone-list" role="main" aria-label="Phone catalog">
+      <section
+        className="phone-list__grid"
+        role="grid"
+        aria-label={`${phones.length} phones available`}
+        aria-live="polite"
+      >
         {phones.map(phone => (
           <PhoneCard key={v4()} phone={phone} onClick={handlePhoneClick} />
         ))}
-      </div>
-    </div>
+      </section>
+    </main>
   );
 };
