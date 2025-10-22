@@ -2,12 +2,16 @@
 
 ## 📋 Table of Contents
 
-1. [Project Overview](#project-overview)
-2. [Root Directory Structure](#root-directory-structure)
-3. [Frontend Documentation](#frontend-documentation)
-4. [Backend Documentation](#backend-documentation)
-5. [Development Setup](#development-setup)
-6. [Deployment](#deployment)
+1. [Project Overview](#-project-overview)
+2. [Root Directory Structure](#-root-directory-structure)
+3. [Frontend Documentation](#-frontend-documentation)
+4. [Backend Documentation](#-backend-documentation)
+5. [Development Setup](#-development-setup)
+6. [Deployment](#-deployment)
+7. [Project Statistics](#-project-statistics)
+8. [API Documentation](#-api-documentation)
+9. [Design System](#-design-system)
+10. [License](#-license)
 
 ---
 

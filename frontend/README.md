@@ -1,5 +1,27 @@
 # Frontend Application Documentation
 
+## 📋 Table of Contents
+
+1. [Overview](#-overview)
+2. [Architecture](#️-architecture)
+3. [Getting Started](#-getting-started)
+4. [Component Architecture](#-component-architecture)
+5. [Styling System](#-styling-system)
+6. [Shopping Cart System](#-shopping-cart-system)
+7. [Search Functionality](#-search-functionality)
+8. [Responsive Design](#-responsive-design)
+9. [Accessibility Features](#-accessibility-features)
+10. [Animations and Interactions](#-animations-and-interactions)
+11. [API Integration](#-api-integration)
+12. [Performance Optimization](#-performance-optimization)
+13. [Development Tools](#-development-tools)
+14. [Mobile Optimization](#-mobile-optimization)
+15. [Deployment](#-deployment)
+16. [Debugging](#-debugging)
+17. [Additional Resources](#-additional-resources)
+
+---
+
 ## 🎯 Overview
 
 The frontend is a React 19 application built with TypeScript and Vite, providing a modern, responsive interface for browsing and managing a mobile phone catalog with shopping cart functionality.

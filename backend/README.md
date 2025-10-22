@@ -1,5 +1,25 @@
 # Backend API Documentation
 
+## 📋 Table of Contents
+
+1. [Overview](#-overview)
+2. [Architecture](#️-architecture)
+3. [Getting Started](#-getting-started)
+4. [API Endpoints](#-api-endpoints)
+5. [Configuration](#-configuration)
+6. [Security Features](#️-security-features)
+7. [Testing](#-testing)
+8. [External API Integration](#-external-api-integration)
+9. [Performance](#-performance)
+10. [Deployment](#-deployment)
+11. [Code Quality](#-code-quality)
+12. [Monitoring](#-monitoring)
+13. [Development Workflow](#-development-workflow)
+14. [Troubleshooting](#-troubleshooting)
+15. [Additional Resources](#-additional-resources)
+
+---
+
 ## 🎯 Overview
 
 The backend is a Node.js/Express API server built with TypeScript that provides RESTful endpoints for the Zara Challenge mobile phone catalog application.
