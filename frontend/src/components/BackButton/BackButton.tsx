@@ -6,11 +6,15 @@ export const BackButton = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="back-button">
-      <button className="back-button__btn" onClick={() => navigate('/')}>
+    <nav className="back-button" role="navigation" aria-label="Back navigation">
+      <button
+        className="back-button__btn"
+        onClick={() => navigate('/')}
+        aria-label="Go back to phone catalog"
+      >
         <SVGIcon src="/src/assets/arrow-back.svg" width="5px" height="8px" />
         Back
       </button>
-    </div>
+    </nav>
   );
 };

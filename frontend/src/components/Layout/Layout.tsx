@@ -19,14 +19,26 @@ export const Layout = ({ children }: PropsWithChildren) => {
 
   return (
     <div className="layout">
-      <header className="layout__header">
-        <nav className="layout__nav">
-          <Link to="/" className="layout__nav-logo">
+      <header className="layout__header" role="banner">
+        <nav
+          className="layout__nav"
+          role="navigation"
+          aria-label="Main navigation"
+        >
+          <Link
+            to="/"
+            className="layout__nav-logo"
+            aria-label="Go to home page"
+          >
             <SVGIcon src="/src/assets/mbst.svg" width="96px" height="32px" />
           </Link>
-          <Link to="/cart" className="layout__nav-cart">
+          <Link
+            to="/cart"
+            className="layout__nav-cart"
+            aria-label={`Shopping cart with ${cartState.items.length} items`}
+          >
             <SVGIcon src="/src/assets/bag.svg" width="18px" height="22px" />
-            <span className="layout__nav-cart-items">
+            <span className="layout__nav-cart-items" aria-hidden="true">
               {cartState.items.length}
             </span>
           </Link>
@@ -34,7 +46,9 @@ export const Layout = ({ children }: PropsWithChildren) => {
       </header>
       {isPhoneListPage && <SearchBar />}
       {isPhoneDetailPage && <BackButton />}
-      <main className="layout__main">{children}</main>
+      <main className="layout__main" role="main">
+        {children}
+      </main>
     </div>
   );
 };

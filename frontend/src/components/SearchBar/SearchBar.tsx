@@ -21,8 +21,16 @@ export const SearchBar = () => {
   }, [searchQuery, setLoading, setSearchTerm, clearSearch, hasUserInteracted]);
 
   return (
-    <div className="search-bar">
+    <section
+      className="search-bar"
+      role="search"
+      aria-label="Search for phones"
+    >
+      <label htmlFor="phone-search" className="sr-only">
+        Search for smartphones
+      </label>
       <input
+        id="phone-search"
         type="text"
         value={searchQuery}
         onChange={e => {
@@ -31,8 +39,17 @@ export const SearchBar = () => {
         }}
         placeholder="Search for a smartphone..."
         className="search-bar__input"
+        aria-describedby="search-results"
+        autoComplete="off"
       />
-      <p className="search-bar__total">{searchState.total} RESULTS</p>
-    </div>
+      <p
+        id="search-results"
+        className="search-bar__total"
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        {searchState.total} RESULTS
+      </p>
+    </section>
   );
 };
