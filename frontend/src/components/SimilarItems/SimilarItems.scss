@@ -36,9 +36,7 @@
 
   &__scroll {
     display: flex;
-    gap: 1px;
-    background-color: $color-black;
-    border: 1px solid $color-black;
+    gap: 0px;
     padding: 0;
     min-width: max-content;
   }
