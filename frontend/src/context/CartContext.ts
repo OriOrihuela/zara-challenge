@@ -21,7 +21,9 @@ export type CartAction =
 
 export interface CartContextType {
   cartState: CartState;
+  // eslint-disable-next-line no-unused-vars
   addToCart: (item: Omit<CartItem, 'id' | 'price'>) => void;
+  // eslint-disable-next-line no-unused-vars
   removeFromCart: (id: string) => void;
 }
 

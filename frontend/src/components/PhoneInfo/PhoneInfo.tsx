@@ -5,7 +5,9 @@ interface PhoneInfoProps {
   phone: PhoneDetail;
   selectedColor: string;
   selectedStorage: string;
+  // eslint-disable-next-line no-unused-vars
   onColorSelect: (color: string) => void;
+  // eslint-disable-next-line no-unused-vars
   onStorageSelect: (storage: string) => void;
   onAddToCart: () => void;
 }

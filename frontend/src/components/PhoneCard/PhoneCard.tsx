@@ -3,6 +3,7 @@ import './PhoneCard.scss';
 
 interface Props {
   phone: Phone;
+  // eslint-disable-next-line no-unused-vars
   onClick: (phoneId: string) => void;
 }
 
